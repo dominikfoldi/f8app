@@ -1,4 +1,4 @@
-FROM node:8.4-alpine
+FROM node:10.15.2
 
 RUN ["npm", "install", "-g", "parse-dashboard"]
 
