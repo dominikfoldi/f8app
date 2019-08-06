@@ -21,7 +21,7 @@
  */
 "use strict";
 
-import ListView from "ListView";
+import FlatList from "FlatList";
 import Platform from "Platform";
 import React from "react";
 
@@ -42,10 +42,10 @@ type Props = {
 
 type State = {
   contentHeight: number,
-  dataSource: ListView.DataSource
+  dataSource: FlatList.DataSource
 };
 
-// FIXME: Android has a bug when scrolling ListView the view insertions
+// FIXME: Android has a bug when scrolling FlatList the view insertions
 // will make it go reverse. Temporary fix - pre-render more rows
 const LIST_VIEW_PAGE_SIZE = Platform.OS === "android" ? 20 : 10;
 
@@ -63,7 +63,7 @@ class PureListView extends React.Component {
 
   constructor(props: Props) {
     super(props);
-    let dataSource = new ListView.DataSource({
+    let dataSource = new FlatList.DataSource({
       getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
       getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -95,7 +95,7 @@ class PureListView extends React.Component {
       contentInset.bottom +
       Math.max(0, this.props.minContentHeight - this.state.contentHeight);
     return (
-      <ListView
+      <FlatList
         initialListSize={10}
         pageSize={LIST_VIEW_PAGE_SIZE}
         enableEmptySections={true}
@@ -149,7 +149,7 @@ class PureListView extends React.Component {
   }
 }
 
-function cloneWithData(dataSource: ListView.DataSource, data: ?Data) {
+function cloneWithData(dataSource: FlatList.DataSource, data: ?Data) {
   if (!data) {
     return dataSource.cloneWithRows([]);
   }
