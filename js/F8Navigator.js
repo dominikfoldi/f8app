@@ -24,7 +24,7 @@
 
 import React from "react";
 import Platform from "Platform";
-import BackAndroid from "BackAndroid";
+import BackHandler from "BackHandler";
 import F8TabsView from "./tabs/F8TabsView";
 import FriendsScheduleView from "./tabs/schedule/FriendsScheduleView";
 import FilterScreen from "./filter/FilterScreen";
@@ -49,11 +49,11 @@ const F8Navigator = React.createClass({
   _handlers: ([]: Array<() => boolean>),
 
   componentDidMount: function() {
-    BackAndroid.addEventListener("hardwareBackPress", this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   },
 
   componentWillUnmount: function() {
-    BackAndroid.removeEventListener("hardwareBackPress", this.handleBackButton);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   },
 
   getChildContext() {
