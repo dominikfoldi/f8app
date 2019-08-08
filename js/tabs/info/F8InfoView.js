@@ -55,7 +55,7 @@ class F8InfoView extends React.Component {
       >
         <PureListView
           title="About"
-          renderRow={_ => {}}
+          renderItem={() => {}}
           renderEmptyList={_ => (
             <F8AboutView
               navigator={this.props.navigator}

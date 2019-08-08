@@ -45,7 +45,7 @@ class F8NotificationsView extends React.Component {
   constructor(props) {
     super(props);
 
-    (this: any).renderRow = this.renderRow.bind(this);
+    (this: any).renderItem = this.renderItem.bind(this);
     (this: any).renderEmptyList = this.renderEmptyList.bind(this);
     (this: any).openNotification = this.openNotification.bind(this);
     (this: any).openReview = this.openReview.bind(this);
@@ -57,7 +57,7 @@ class F8NotificationsView extends React.Component {
         <PureListView
           data={this.props.notifications}
           renderEmptyList={this.renderEmptyList}
-          renderRow={this.renderRow}
+          renderItem={this.renderItem}
           renderFooter={_ => <F8TimelineBackground height={80} left={24} />}
           showsVerticalScrollIndicator={false}
         />
@@ -72,13 +72,13 @@ class F8NotificationsView extends React.Component {
     );
   }
 
-  renderRow(notification, sid, rid) {
+  renderItem({notification, index, separators}) {
     return (
       <NotificationCell
         key={notification.id}
         notification={notification}
         onPress={() => this.openNotification(notification)}
-        firstRow={rid === 0 || rid === "0"}
+        firstRow={index === 0 || index === "0"}
       />
     );
   }

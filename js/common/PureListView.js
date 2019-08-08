@@ -21,20 +21,14 @@
  */
 "use strict";
 
-import FlatList from "FlatList";
+import { FlatList } from 'react-native';
 import Platform from "Platform";
 import React from "react";
 
-type Rows = Array<Object>;
-type RowsAndSections = {
-  [sectionID: string]: Object
-};
-
-export type Data = Rows | RowsAndSections;
 type RenderElement = () => ?ReactElement;
 
 type Props = {
-  data: Data,
+  data: [],
   renderEmptyList?: ?RenderElement,
   minContentHeight: number,
   contentInset: { top: number, bottom: number }
@@ -42,7 +36,7 @@ type Props = {
 
 type State = {
   contentHeight: number,
-  dataSource: FlatList.DataSource
+  data: []
 };
 
 // FIXME: Android has a bug when scrolling FlatList the view insertions
@@ -63,30 +57,16 @@ class PureListView extends React.Component {
 
   constructor(props: Props) {
     super(props);
-    let dataSource = new FlatList.DataSource({
-      getRowData: (dataBlob, sid, rid) => dataBlob[sid][rid],
-      getSectionHeaderData: (dataBlob, sid) => dataBlob[sid],
-      rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2
-    });
 
     this.state = {
       contentHeight: 0,
       containerHeight: 0,
-      dataSource: cloneWithData(dataSource, props.data)
+      data: props.data ? props.data : []
     };
 
     (this: any).renderFooter = this.renderFooter.bind(this);
     (this: any).renderHeader = this.renderHeader.bind(this);
     (this: any).onContentSizeChange = this.onContentSizeChange.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps: Props) {
-    if (this.props.data !== nextProps.data) {
-      this.setState({
-        dataSource: cloneWithData(this.state.dataSource, nextProps.data)
-      });
-    }
   }
 
   render() {
@@ -102,9 +82,10 @@ class PureListView extends React.Component {
         removeClippedSubviews={false}
         {...this.props}
         ref={c => (this._listview = c)}
-        dataSource={this.state.dataSource}
+        data={this.state.data}
         renderHeader={this.renderHeader}
-        renderFooter={this.renderFooter}
+        ListFooterComponent={this.renderFooter}
+        keyExtractor={(item, index) => index}
         contentInset={{ bottom, top: contentInset.top }}
         onContentSizeChange={this.onContentSizeChange}
         onLayout={event => {
@@ -132,13 +113,13 @@ class PureListView extends React.Component {
   }
 
   renderHeader(): ?ReactElement {
-    if (this.state.dataSource.getRowCount() !== 0) {
+    if (this.state.data.length != 0) {
       return this.props.renderHeader && this.props.renderHeader();
     }
   }
 
   renderFooter(): ?ReactElement {
-    if (this.state.dataSource.getRowCount() === 0) {
+    if (this.state.data.count === 0) {
       return (
         this.props.renderEmptyList &&
         this.props.renderEmptyList(this.state.containerHeight)
@@ -147,16 +128,6 @@ class PureListView extends React.Component {
 
     return this.props.renderFooter && this.props.renderFooter();
   }
-}
-
-function cloneWithData(dataSource: FlatList.DataSource, data: ?Data) {
-  if (!data) {
-    return dataSource.cloneWithRows([]);
-  }
-  if (Array.isArray(data)) {
-    return dataSource.cloneWithRows(data);
-  }
-  return dataSource.cloneWithRowsAndSections(data);
 }
 
 module.exports = PureListView;

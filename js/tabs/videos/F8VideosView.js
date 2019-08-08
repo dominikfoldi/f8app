@@ -51,7 +51,7 @@ class F8VideosView extends React.Component {
   constructor() {
     super();
 
-    this.renderRow = this.renderRow.bind(this);
+    this.renderItem = this.renderItem.bind(this);
     this.onPressEmptyCTA = this.onPressEmptyCTA.bind(this);
     this.onPress = this.onPress.bind(this);
     this.openFilterScreen = this.openFilterScreen.bind(this);
@@ -92,7 +92,7 @@ class F8VideosView extends React.Component {
           renderEmptyList={_ => (
             <F8EmptyVideosView onPress={this.onPressEmptyCTA} />
           )}
-          renderRow={this.renderRow}
+          renderItem={this.renderItem}
         />
       </ListContainer>
     );
@@ -115,7 +115,7 @@ class F8VideosView extends React.Component {
     }
   }
 
-  renderRow(row: Array, sid, rid) {
+  renderItem({row: Array, sid, rid}) {
     const largeVideo = row[0] && row[0].type === "large";
     const content = row.map((video, idx) => (
       <F8VideoThumb

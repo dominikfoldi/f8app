@@ -49,7 +49,7 @@ class FriendsListView extends React.Component {
 
     this._innerRef = null;
 
-    (this: any).renderRow = this.renderRow.bind(this);
+    (this: any).renderItem = this.renderItem.bind(this);
     (this: any).renderFooter = this.renderFooter.bind(this);
     (this: any).renderEmptyList = this.renderEmptyList.bind(this);
     (this: any).storeInnerRef = this.storeInnerRef.bind(this);
@@ -60,15 +60,15 @@ class FriendsListView extends React.Component {
       <PureListView
         ref={this.storeInnerRef}
         data={this.props.friends}
-        renderRow={this.renderRow}
+        renderItem={this.renderItem}
         renderEmptyList={this.renderEmptyList}
-        renderFooter={this.renderFooter}
+        ListFooterComponent={this.renderFooter}
         {...(this.props: any) /* flow can't guarantee the shape of props */}
       />
     );
   }
 
-  renderRow(friend: Friend) {
+  renderItem({friend: Friend}) {
     return (
       <FriendCell
         friend={friend}

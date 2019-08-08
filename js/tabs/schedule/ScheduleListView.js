@@ -59,7 +59,7 @@ class ScheduleListView extends React.Component {
     this._innerRef = null;
 
     (this: any).renderSectionHeader = this.renderSectionHeader.bind(this);
-    (this: any).renderRow = this.renderRow.bind(this);
+    (this: any).renderItem = this.renderItem.bind(this);
     (this: any).renderEmptyList = this.renderEmptyList.bind(this);
     (this: any).storeInnerRef = this.storeInnerRef.bind(this);
   }
@@ -82,7 +82,7 @@ class ScheduleListView extends React.Component {
       <PureListView
         ref={this.storeInnerRef}
         data={this.state.todaySessions}
-        renderRow={this.renderRow}
+        renderItem={this.renderItem}
         renderSectionHeader={this.renderSectionHeader}
         {...(this.props: any) /* flow can't guarantee the shape of props */}
         renderEmptyList={this.renderEmptyList}
@@ -99,11 +99,11 @@ class ScheduleListView extends React.Component {
     return <SessionsSectionHeader title={formatted} />;
   }
 
-  renderRow(session: Session, day: number) {
+  renderItem({data: {session: Session, day: number}}) {
     return (
       <F8SessionCell
-        onPress={_ => this.openSession(session, day)}
-        session={session}
+        onPress={_ => this.openSession(data.session, data.day)}
+        session={data.session}
         firstRow={this.isFirstSessionCell(session.id)}
       />
     );

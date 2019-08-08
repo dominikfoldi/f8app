@@ -107,7 +107,7 @@ class F8DemosView extends React.Component {
               }}
             >
               <PureListView
-                renderRow={_ => {}}
+                renderItem={() => {}}
                 renderEmptyList={() =>
                   this.renderView(demos, garages, hasBookables)}
               />
