@@ -24,13 +24,13 @@
 "use strict";
 
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewPropTypes } from "react-native";
 import PropTypes from "prop-types";
 import createClass from "create-react-class";
 
 const F8PageControl = createClass({
   propTypes: {
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     count: PropTypes.number.isRequired,
     selectedIndex: PropTypes.number.isRequired
   },
