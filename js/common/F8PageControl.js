@@ -25,10 +25,10 @@
 
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import PropTypes from "prop-types";
+import createClass from "create-react-class";
 
-const PropTypes = React.PropTypes;
-
-const F8PageControl = React.createClass({
+const F8PageControl = createClass({
   propTypes: {
     style: View.propTypes.style,
     count: PropTypes.number.isRequired,
@@ -49,7 +49,7 @@ const F8PageControl = React.createClass({
   }
 });
 
-const Circle = React.createClass({
+const Circle = createClass({
   render: function() {
     const extraStyle = this.props.isSelected ? styles.full : styles.empty;
     return <View style={[styles.circle, extraStyle]} />;

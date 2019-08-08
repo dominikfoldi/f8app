@@ -31,6 +31,8 @@ import FilterScreen from "./filter/FilterScreen";
 import LoginModal from "./login/LoginModal";
 import { Navigator } from "react-native-deprecated-custom-components";
 import SessionsCarousel from "./tabs/schedule/SessionsCarousel";
+import PropTypes from "prop-types";
+import createClass from "create-react-class";
 
 import SharingSettingsScreen from "./tabs/schedule/SharingSettingsScreen";
 
@@ -45,7 +47,7 @@ import { switchTab } from "./actions";
 import F8MapView from "./tabs/maps/F8MapView";
 import DemosCarousel from "./tabs/demos/DemosCarousel";
 
-const F8Navigator = React.createClass({
+const F8Navigator = createClass({
   _handlers: ([]: Array<() => boolean>),
 
   componentDidMount: function() {
@@ -154,8 +156,8 @@ const F8Navigator = React.createClass({
 });
 
 F8Navigator.childContextTypes = {
-  addBackButtonListener: React.PropTypes.func,
-  removeBackButtonListener: React.PropTypes.func
+  addBackButtonListener: PropTypes.func,
+  removeBackButtonListener: PropTypes.func
 };
 
 const styles = StyleSheet.create({

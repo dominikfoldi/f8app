@@ -30,6 +30,7 @@ import ReactNative from "react-native";
 import StyleSheet from "./F8StyleSheet";
 import View from "View";
 import ViewPager from "./ViewPager";
+import PropTypes from "prop-types";
 
 import F8Colors from "./F8Colors";
 import ActionsOverlay from "./ActionsOverlay";
@@ -68,8 +69,8 @@ class ListContainer extends React.Component {
   };
 
   static contextTypes = {
-    openDrawer: React.PropTypes.func,
-    hasUnreadNotifications: React.PropTypes.number
+    openDrawer: PropTypes.func,
+    hasUnreadNotifications: PropTypes.number
   };
 
   constructor(props: Props) {

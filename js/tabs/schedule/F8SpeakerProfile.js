@@ -28,8 +28,9 @@ import F8Colors from "../../common/F8Colors";
 import React from "react";
 import { Heading3, Text } from "../../common/F8Text";
 import { StyleSheet, View } from "react-native";
+import createClass from "create-react-class";
 
-const F8SpeakerProfile = React.createClass({
+const F8SpeakerProfile = createClass({
   render: function() {
     const speaker = this.props.speaker;
     return (

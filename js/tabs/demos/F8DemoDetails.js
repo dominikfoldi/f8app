@@ -26,6 +26,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
+import createClass from "create-react-class";
 
 import {
   Dimensions,
@@ -54,7 +55,7 @@ const WINDOW_WIDTH = Dimensions.get("window").width,
 <F8DemoDetails />
 ============================================================================= */
 
-const F8DemoDetails = React.createClass({
+const F8DemoDetails = createClass({
   getInitialState: function() {
     return {
       scrollTop: 0

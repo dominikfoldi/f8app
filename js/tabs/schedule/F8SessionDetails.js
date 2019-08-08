@@ -33,6 +33,7 @@ import AddToScheduleButton from "./AddToScheduleButton";
 import formatDuration from "./formatDuration";
 import { connect } from "react-redux";
 import { addToSchedule, removeFromScheduleWithPrompt } from "../../actions";
+import createClass from "create-react-class";
 
 import { Dimensions, View, ScrollView, PixelRatio } from "react-native";
 import { Text, Heading2, Heading4, Paragraph } from "../../common/F8Text";
@@ -48,7 +49,7 @@ const WINDOW_WIDTH = Dimensions.get("window").width,
   HORIZONTAL_BREAKPOINT = WINDOW_WIDTH <= 320,
   CONTENT_PADDING_H = HORIZONTAL_BREAKPOINT ? 20 : 30;
 
-const F8SessionDetails = React.createClass({
+const F8SessionDetails = createClass({
   getInitialState: function() {
     return {
       scrollTop: 0,

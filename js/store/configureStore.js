@@ -28,7 +28,7 @@ import promise from "./promise";
 import array from "./array";
 import analytics from "./analytics";
 import reducers from "../reducers";
-import createLogger from "redux-logger";
+import { createLogger } from "redux-logger";
 import { persistStore, autoRehydrate } from "redux-persist";
 import { AsyncStorage } from "react-native";
 import { ensureCompatibility } from "./compatibility";
