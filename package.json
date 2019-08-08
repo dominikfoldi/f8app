@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "server": "docker-compose up",
+    "bundle:android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "android": "./scripts/run-android-app.sh",
     "ios": "babel-node ./scripts/open-ios-project.js",
     "test": "jest --verbose",
